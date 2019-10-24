@@ -1,23 +1,8 @@
-%% vectors of known values
-X = [0 1 2 3];
-% Y = [0 1 4 9] % y(x) = x^2;
-Y = [-1 -2 -3 -4]; % y(x) = 1 + x;
-%% polynomial interpolation
-degree = length(X);
-pn = X;
+%% test polynominal interpolation function
+poly_inter([0,1,2],[0,-1,-4]) % y(x) = -x^2;
+poly_inter([0,1,2],[0,1,2]) % y(x) = x;
+poly_inter([0,1,2,3],[1,2,5,10]) % y(x) = 1 + x^2;
 
-% for i = 1:degree % WHY? 
-%     pn(i) = pn(i)^(i-1); %power each x to its degree 
-% end
-
-% Me = ones(degree,degree);
-Me = ones(degree,1);
-
-for i=2:degree
-%    Me(i,:) = (X).^(i-1);
-    Me = [Me ((X).^(i-1))'];
-end
-
-% Me = Me';
-%% interpolating polynominal coefficients
-ae = inv(Me)*Y'
+%% test multivariable linear interpolation
+multi_lin_inter([0 0; 0 -1; -1 0],[0 1 1]) % z -x -y = 0
+multi_lin_inter([0 0 0; 0 1 0; 1 1 0; 1 0 1],[0 0 0 1]) % x + y +z -w= 0
