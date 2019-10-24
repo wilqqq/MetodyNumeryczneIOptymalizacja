@@ -1,19 +1,23 @@
 %% vectors of known values
-X = [0 1 2 3]
-Y = [0 1 4 9]
+X = [0 1 2 3];
+% Y = [0 1 4 9] % y(x) = x^2;
+Y = [-1 -2 -3 -4]; % y(x) = 1 + x;
 %% polynomial interpolation
-stopien = length(X);
+degree = length(X);
 pn = X;
 
-for i = 1:stopien
-    pn(i) = pn(i)^(i-1);
+% for i = 1:degree % WHY? 
+%     pn(i) = pn(i)^(i-1); %power each x to its degree 
+% end
+
+% Me = ones(degree,degree);
+Me = ones(degree,1);
+
+for i=2:degree
+%    Me(i,:) = (X).^(i-1);
+    Me = [Me ((X).^(i-1))'];
 end
 
-Me = ones(stopien,stopien);
-for i=2:stopien
-   Me(i,:) = (X).^(i-1);
-end
-
-Me = Me';
+% Me = Me';
 %% interpolating polynominal coefficients
-ae = inv(Me)*Y';
+ae = inv(Me)*Y'
