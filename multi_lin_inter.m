@@ -16,8 +16,6 @@ Me = ones(degree(1),1);
 for i=X_values %matrix of powers of x_values
     Me = [Me i]; 
 end
-
-Me
 %% interpolating polynominal coefficients
 poly_coeffs = inv(Me)*y_values';
 end
