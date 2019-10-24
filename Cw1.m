@@ -1,8 +1,10 @@
-X = [0 1 2]
-Y = [0 1 4]
-
+%% vectors of known values
+X = [0 1 2 3]
+Y = [0 1 4 9]
+%% polynomial interpolation
 stopien = length(X);
 pn = X;
+
 for i = 1:stopien
     pn(i) = pn(i)^(i-1);
 end
@@ -13,5 +15,5 @@ for i=2:stopien
 end
 
 Me = Me';
-
-ae = inv(Me)*Y'
+%% interpolating polynominal coefficients
+ae = inv(Me)*Y';
