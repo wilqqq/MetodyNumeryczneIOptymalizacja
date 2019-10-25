@@ -1,23 +1,33 @@
 function [poly_coeffs] = poly_inter(x_values,y_values)
 %POLY_INTER Calculates interpolating polynomial
 %   May result in error if cannot inverse the Me matrix
+
 %% polynomial interpolation
-degree = length(x_values);
-% pn = x_values;
-% for i = 1:degree % WHY? 
-%     pn(i) = pn(i)^(i-1); %power each x to its degree 
-% end
+degree = length(x_values)-1;
 
-% Me = ones(degree,degree);
-Me = ones(degree,1);
+p = ones(degree+1,1);
 
-for i=1:degree-1 %matrix of powers of x_values
-%    Me(i,:) = (X).^(i-1);
-    Me = [Me ((x_values).^(i))']; 
+for i = 1:degree %matrix of powers of x_values
+    p = [ p (x_values').^(i)];
 end
 
-% Me = Me';
+Minv = inv(p);
+
 %% interpolating polynominal coefficients
-poly_coeffs = inv(Me)*y_values';
+poly_coeffs = Minv*y_values'; %ae
+% y_approx = p*poly_coeffs;
+
+%% check N poly
+% t = min(x_values):0.1:max(x_values);
+% T = ones(1,length(t));
+% for i=1:degree
+%     T = [T ;t.^i];
+% end
+
+N = p*Minv;
+
+plot(x_values,N)
+grid on;
+
 end
 

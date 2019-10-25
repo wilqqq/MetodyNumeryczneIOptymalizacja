@@ -19,4 +19,3 @@ end
 %% interpolating polynominal coefficients
 poly_coeffs = inv(Me)*y_values';
 end
-
