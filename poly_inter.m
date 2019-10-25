@@ -24,9 +24,11 @@ poly_coeffs = Minv*y_values'; %ae
 %     T = [T ;t.^i];
 % end
 
+% it works
 N = p*Minv;
 
-plot(x_values,N)
+plot(x_values,N) %alternatively calculate poly_inter([x_values;...],N) and
+% draw polynomials with coeffs
 grid on;
 
 end

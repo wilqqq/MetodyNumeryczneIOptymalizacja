@@ -8,14 +8,34 @@ function [poly_coeffs] = multi_lin_inter(X_values,y_values)
 %   plane: 0 = x + y - z, let's make z a dependent variable
 %   X_values = [0 0;0 1;1 0]
 %   y_values = [0 1 1]
-%% polynomial interpolation
+
+%% multivariable linear interpolation
 degree = size(X_values);
-
-Me = ones(degree(1),1);
-
-for i=X_values %matrix of powers of x_values
-    Me = [Me i]; 
+dim = degree(2)+1;
+if dim ~= degree % must agree
+    poly_coeffs = [];
+    return;
 end
-%% interpolating polynominal coefficients
-poly_coeffs = inv(Me)*y_values';
+
+p = ones(degree(1),1);
+
+for i=X_values %matrix of variables
+    p = [p i]; 
+end
+
+Minv = inv(p);
+
+%% coefficients
+poly_coeffs = Minv*y_values';
+
+%% check 
+if dim == 3 
+    N = p*Minv;
+    plot3(N)
+    
+    
+%     plot(x_values,N)
+%     grid on;
+end
+   
 end
