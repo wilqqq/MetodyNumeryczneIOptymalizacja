@@ -30,10 +30,9 @@ poly_coeffs = Minv*y_values';
 
 %% check 
 if dim == 3 
-    N = p*Minv;
-    plot3(N)
-    
-    
+    N1 = p(1,:)*Minv
+    pe = N*X_values
+%     plot3(N);
 %     plot(x_values,N)
 %     grid on;
 end
