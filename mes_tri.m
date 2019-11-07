@@ -16,8 +16,8 @@ classdef mes_tri
     methods
         function obj = mes_tri(tri_obj,X_values,y_values)
             %MES_TRI Construct an instance of this class
-            %   tri_obj - Triangulation object
-            %   X_values - matrix of independent variables
+            %   tri_obj - Triangulation object made for X and y _values
+            %   X_values - matrix of independent variables (rows sorted)
             %   y_values - vector of dependent variables
             obj.tri = tri_obj;
             obj.X = X_values;

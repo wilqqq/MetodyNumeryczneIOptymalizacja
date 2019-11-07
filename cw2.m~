@@ -46,7 +46,7 @@ pointssr=[];
 for i=1:length(t)
     pointssr = [pointssr ;[ones(length(t),1).*t(i) rand(length(t),1)]];
 end
-pointssr = sortrows(pointssr);
+pointssr = sortrows(pointsl);
 valsr = sin(sum(pointssr,2));
 dtsr = delaunayTriangulation(pointssr);
 figure(3)
