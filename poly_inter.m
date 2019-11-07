@@ -8,7 +8,7 @@ degree = length(x_values)-1;
 p = ones(degree+1,1);
 
 for i = 1:degree %matrix of powers of x_values
-    p = [ p (x_values').^(i)];
+    p(:,i+1) = (x_values').^(i);
 end
 
 Minv = inv(p);

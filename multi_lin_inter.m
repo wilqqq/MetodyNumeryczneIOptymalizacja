@@ -19,22 +19,27 @@ end
 
 p = ones(degree(1),1);
 
-for i=X_values %matrix of variables
-    p = [p i]; 
+i=2;
+for x=X_values %matrix of variables
+    p(:,i)  = x;
+    i = i+1;
 end
 
 Minv = inv(p);
 
+Minv
+y_values
+
 %% coefficients
-poly_coeffs = Minv*y_values';
+poly_coeffs = Minv*y_values;
 
 %% check 
-if dim == 3 
-    N1 = p(1,:)*Minv
-    pe = N*X_values
+% if dim == 3 
+%     N1 = p(1,:)*Minv
+%     pe = N*X_values
 %     plot3(N);
 %     plot(x_values,N)
 %     grid on;
-end
+% end
    
 end

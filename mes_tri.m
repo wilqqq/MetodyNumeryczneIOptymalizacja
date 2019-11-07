@@ -26,7 +26,7 @@ classdef mes_tri
             for tr=obj.tri.ConnectivityList' %for each triad
                 obj.Coeffs = [
                     obj.Coeffs; 
-                    multi_lin_inter(X(tr,:),y(tr))
+                    multi_lin_inter(obj.X(tr,:),obj.y(tr))
                     ];
             end
         end
@@ -39,17 +39,17 @@ classdef mes_tri
             %PREDICT 
             si = size(X);
             p = ones(si(1),si(2)+1);
-            si = 1;
-            for i=X %matrix of variables
-                p(:,si) = i; 
-                si += 1;
+            i = 1;
+            for x=X %matrix of variables
+                p(:,i) = x; 
+                i = i+1;
             end
             %calculate
             %1 - choose rigth triad
             %2 - takeout relevant coeeficients
             %3 - predict
             %x - make it work with matrixes!
-            y+pred = 0;
+            y_pred = 0;
         end
     end
 end
