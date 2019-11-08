@@ -41,7 +41,7 @@ classdef mes_tri
         end
         
         function inout = inTri(obj, p2chk, ps)
-            inout = insideTri(obj, p2chk, ps(:,1)', ps(:,2)', ps(:,3)');
+            inout = insideTri(obj, p2chk', ps(:,1)', ps(:,2)', ps(:,3)');
         end
         
         function output = get_coefficients(obj)
@@ -51,13 +51,15 @@ classdef mes_tri
         function tri_num = search_tri(obj,point)
             %not optimal ! ! ! ! for regular - find pos with: floor(10*x) floor(10*y)
             tri_num = [];
-            num = 1
-            for tr=obj.tri.ConnectivityList'
-                if inTri(obj, point, obj.tri.Points(tr,:)' ) == 1
-                    tri_num = [tri_num num]
-                end
-                num = num +1;
-            end
+%             num = 1;
+%             for tr=obj.tri.ConnectivityList'
+%                 if inTri(obj, point, obj.tri.Points(tr,:)' ) == 1
+%                     tri_num = num;
+%                     break
+%                 end
+%                 num = num +1;
+%             end
+            tri_num = pointLocation(obj.tri, point); %== num
         end
         
         function y_pred = predict(obj, X)
@@ -71,10 +73,28 @@ classdef mes_tri
             end
             %calculate
             %1 - choose rigth triad
-            num = search_tri(obj,X); %TODO fix to work with matrix
+%             triplot(obj.tri)
+%             hold on;
+%             plot(X(1),X(2),'ro')
+%             grid on;     
+%             obj.tri.ConnectivityList
+%             obj.Coeffs
+%             num = []
+%             for x=X'
+                num = search_tri(obj,X); %TODO fix to work with matrix
+%             end
+%             num
+%             for x=obj.tri.Points(obj.tri.ConnectivityList(num,:)',:)'
+%                 hold on
+%                 plot(x(1),x(2),'bo')
+%             end
             %2 - takeout relevant coeeficients
             %3 - predict
-            y_pred = p*(obj.Coeffs(num,:)');
+            y_pred = [];
+            for i=1:length(num)
+                y_pred=[y_pred; obj.Coeffs(num(i),:)*p(i,:)'];
+                %y_pred = [y_pred; p(i,:)*(M)];
+            end
             %x - make it work with matrixes!
         end
     end

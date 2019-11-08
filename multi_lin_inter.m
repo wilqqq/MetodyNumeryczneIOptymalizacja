@@ -37,6 +37,7 @@ poly_coeffs = Minv*y_values;
 %     plot3(N);
 %     plot(x_values,N)
 %     grid on;
+%         (p*poly_coeffs - y_values) == 0;
 % end
    
 end

@@ -62,4 +62,17 @@ title('Semi-regular');
 mesl = mes_tri(dtl,vall);
 mesr = mes_tri(dtr,valr);
 mesr.predict([0.5 0.5;0.75 0.25;0 0]) - sin([1;1;0])
+mesr.predict([0.5 0.5]) - sin([1])
 messr = mes_tri(dtsr,valsr);
+
+%% mes test
+testP = [   
+    0 0;
+    0 1;
+    0 2;
+    1 0;
+    1 1
+    1 2;
+];
+testV = [1;0.5;0;0.5;0;-0.25];
+mes_tri(delaunayTriangulation(testP), testV).predict(testP)-testV
