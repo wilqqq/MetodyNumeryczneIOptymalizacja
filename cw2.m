@@ -59,3 +59,7 @@ title('Semi-regular');
 %% ad 2
 %pkt3 = [pointsr(dtsr.ConnectivityList(1,:),1), pointsr(dtsr.ConnectivityList(1,:),2)];
 %pkt3 = pointsr(dtsr.ConnectivityList(1,:),:);
+mesl = mes_tri(dtl,vall);
+mesr = mes_tri(dtr,valr);
+mesr.predict([0.5 0.5;0.75 0.25;0 0]) - sin([1;1;0])
+messr = mes_tri(dtsr,valsr);

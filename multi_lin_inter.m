@@ -27,9 +27,6 @@ end
 
 Minv = inv(p);
 
-Minv
-y_values
-
 %% coefficients
 poly_coeffs = Minv*y_values;
 
