@@ -7,7 +7,7 @@ function [poly_coeffs] = multi_lin_inter(X_values,y_values)
 %   points(x,y,z) = {(0,0,0),(1,0,1),(0,1,1)}
 %   plane: 0 = x + y - z, let's make z a dependent variable
 %   X_values = [0 0;0 1;1 0]
-%   y_values = [0 1 1]
+%   y_values = [0; 1; 1]
 
 %% multivariable linear interpolation
 degree = size(X_values);
